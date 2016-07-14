@@ -107,6 +107,12 @@ $query="$select $from $where GROUP BY staff.staff_id ORDER BY $order_by LIMIT ".
     </form>
  </div>
 <div style="float:right;text-align:right;padding-right:5px;"><b><a href="staff.php?a=add" class="Icon newstaff">Add New Staff</a></b></div>
+<div style="">
+      <form action="staff.php" method="POST">
+            <input type="" name="username">
+            <input type="submit" name="search" value="Search">
+      </form>
+</div>
 <div class="clear"></div>
 <?php
 $res=db_query($query);
