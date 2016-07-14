@@ -20,6 +20,12 @@ if($_REQUEST['id'] && !($staff=Staff::lookup($_REQUEST['id'])))
 
 if($_POST){
     switch(strtolower($_POST['do'])){
+        case 'search':
+            if(!$staff){
+                $errors['err']='Unknown or invalid staff';
+            }elseif($staff->getStaff($_POST, $errors)){
+                
+            }
         case 'update':
             if(!$staff){
                 $errors['err']='Unknown or invalid staff.';
