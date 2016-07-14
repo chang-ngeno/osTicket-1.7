@@ -840,5 +840,24 @@ class Staff {
 
         return false;
     }
+    function getStaff($username) {
+
+        $sql='SELECT s.staff_id,CONCAT_WS(", ",s.lastname, s.firstname) as name '
+            .' FROM '.STAFF_TABLE.' s ';
+
+        if($username) {
+            $sql.=' INNER JOIN '.GROUP_TABLE.' g ON(g.group_id=s.group_id AND g.group_enabled=1) '
+                 .' WHERE s.username=$username'
+        }
+
+        $sql.='  ORDER BY s.lastname, s.firstname';
+        $users=array();
+        if(($res=db_query($sql)) && db_num_rows($res)) {
+            while(list($id, $name) = db_fetch_row($res))
+                $users[$id] = $name;
+        }
+
+        return $users;
+    }
 }
 ?>
